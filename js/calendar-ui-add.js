@@ -1,13 +1,14 @@
+//Monta o calendario de disponibilidade dos colaboradores mostrando os dias que os mesmos estão disponiveis
 var $calendar =  $('#clndVisaoAgendaAberta').fullCalendar({
                 locale: 'pt-br',
                 editable: true,
-                navLinks: false, // can click day/week names to navigate views
+                navLinks: true, // can click day/week names to navigate views
                 eventLimit: true, // allow "more" link when too many events
-                
+
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    //right: 'month,' //month,agendaWeek,agendaDay,listWeek
+                    right: 'month' //month,agendaWeek,agendaDay,listWeek
                 },
 
                 loading: function(bool) {
@@ -15,12 +16,12 @@ var $calendar =  $('#clndVisaoAgendaAberta').fullCalendar({
                 },
 
                 events: {
-                    url: 'lib/agendalivre.php', 
+                    url: 'lib/agendalivre.php',
                     error: function() {
                         $('#script-warning').show();
                     }
                 },
-                
+
                 dayRender: function (date, cell) {
                     //var today = new Date('2018-02-25T00:00:00');
                     var dia = $.fullCalendar.moment('2018-02-25');
@@ -30,14 +31,15 @@ var $calendar =  $('#clndVisaoAgendaAberta').fullCalendar({
                 }
             });
 
-  var $calendarAgendaCliente =  $('#clndAgendaCliente').fullCalendar({
+//Descrever o que faz
+var $calendarAgendaCliente =  $('#clndAgendaCliente').fullCalendar({
                 locale: 'pt-br',
 				defaultView: 'agendaDay', //determina a iniciação do calendario month=mes agendaWeek=semana agendaDay=dia
                 editable: true,
                 navLinks: false, // can click day/week names to navigate views
                 eventLimit: true, // allow "more" link when too many events
 				height: 700,
-                
+
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -54,7 +56,7 @@ var $calendar =  $('#clndVisaoAgendaAberta').fullCalendar({
                         $('#script-warning').show();
                     }
                 },
-                
+
                 dayRender: function (date, cell) {
                     //var today = new Date('2018-02-25T00:00:00');
                     var dia = $.fullCalendar.moment('2018-03-09');

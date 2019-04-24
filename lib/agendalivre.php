@@ -1,4 +1,5 @@
-s<?php
+<?php
+
 	//--------------------------------------------------------------------------------------------------
 	// This script reads event data from a JSON file and outputs those events which are within the range
 	// supplied by the "start" and "end" GET parameters.
@@ -9,8 +10,10 @@ s<?php
 	//--------------------------------------------------------------------------------------------------
 
 	// Require our Event class and datetime utilities
-	require_once BASE_DIR.'config.php';
+	require_once '../config.php';
 	require_once BASE_DIR.'lib'.DS.'utils.php';
+
+	consoleLog("AGENDALIVRE");
 
 	// Short-circuit if the client did not give us a date range.
 	if (!isset($_GET['start']) || !isset($_GET['end'])) {
@@ -30,7 +33,7 @@ s<?php
 	}
 
 	// Read and parse our events JSON file into an array of event data arrays.
-	$json = file_get_contents(dirname(BASE_DIR.'json'.DS.'arquivo.json');
+	$json = file_get_contents(dirname(BASE_DIR.'json'.DS.'arquivo.json'));
 	$input_arrays = json_decode($json, true);
 
 	// Accumulate an output array of event data arrays.
@@ -45,7 +48,6 @@ s<?php
 	    $output_arrays[] = $event->toArray();
 	  }
 	}
-
 	// Send JSON to the client.
 	echo json_encode($output_arrays);
 ?>

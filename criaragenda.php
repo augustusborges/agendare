@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html>
     <head>
         <meta charset="utf-8"/>
-        <meta name="description" content=""/>
+        <meta name="Author" content="Focus4 Business Intelligence Ltda"/>
+        <meta name="description" content="Monta a agenda de disponbilidade dos profissionais"/>
+        <meta name="keywords" content="agenda"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-        <title>d.a.a.b - Monta Agenda Profissionais</title>
+        <title>d.a.a.b - Monta Agenda dos Profissionais</title>
 
         <links>
             <link rel="stylesheet" href="css/bootstrap.css"/>
             <link rel="stylesheet" href="css/jquery-ui.css"/>
-            <link rel="stylesheet" href="css/jquery-ui.theme.min.css"/>
             <link rel="stylesheet" href="css/mine.css"/>
             <link rel="stylesheet" href="css/principal.css"/>
         </links>
     </head>
-
     <body>
         <div class="container-fluid body_color">
-            
+
             <div class="row" id="php">
                 <?php
                     require_once 'config.php';
@@ -29,37 +29,27 @@
                     $colaborador = new colaborador();
                 ?>
             </div>
- 
+
             <div class="row" id="menu">
                 <?php include BASE_DIR.'view'.DS.'_menu.php';?>
                 <div></div>
             </div>
-            
-			<div class="row" id="linha_cabecalho">
-				<div class="col-sm-12">
-					<header>
-						<div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">Monta Agenda de Colaborador</div>
-                        <!--
-                            <a href="#" 
-                                title="Página onde se monta a agenda de profissionais. O que se montar aqui é o que ficará disponível para que os clientes façam seus agendamentos."
-                                class="mine_float_right">
-                                <img src="../../css/images/professor.png"/>
-                            </a>
-                        -->
-                    </header>
-				</div>
-			</div>
+
+			      <div class="row" id="linha_cabecalho">
+				      <div class="col-sm-12">
+                <header>
+                  <div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">Monta Agenda de Colaborador</div>
+                  <!-- <a href="#" title="texto para exibir." class="mine_float_right"> <img src="../../css/images/professor.png"/> </a>-->
+                </header>
+				      </div>
 
             <section id="formulario">
                 <form action="disponibilidadecolaboradores.php" method="post">
 
-                    <!-- Período de agendamento-->    
+                    <!-- Período de agendamento-->
                     <fieldset>
                     <legend>
                         Selecione período para criação de agenda:
-                        <!--<a href="#" title="Informe o período para agendamento." class="mine_float_right">
-                            <img src="../../css/images/professor.png"/>
-                        </a>-->
                     </legend>
 
                     <label for="dt_ini">de:</label>
@@ -69,69 +59,52 @@
                     <input type="text" name="dt_fim" id="dt_fim" required>
                     </fieldset>
 
-                    <!-- Lista de colaboradores-->    
+                    <!-- Lista de colaboradores-->
                     <fieldset>
-                        <legend>
+                      <legend>
                         Selecione os colaboradores para agendar:
-                            <!--
-                            <a href="#" title="Selecione todos os colaboradores que se encaixam na mesma agenda, assim você cria a agenda para todos os colaboradores selecionados ao invés de criar uma a uma. #TimeIsMoney" class="mine_float_right">
-                            <img src="../../css/images/professor.png"/>
-                        </a>
-                        -->
-                    </legend>
-                    
-                        <?php
-                            $colaboradores = $colaborador->listaColaboradores(1);
-                            montaMultiploSelect($colaboradores);
-                        ?>
+                      </legend>
 
+                      <?php
+                        $colaboradores = $colaborador->listaColaboradores(1);
+                        montaMultiploSelect($colaboradores);
+                      ?>
                     </fieldset>
-                   
-                    <!-- Dias de trabalho-->    
+
+                    <!-- Dias de trabalho-->
                     <fieldset>
-                        <legend>
-                            Selecione os dias de trabalho:
-                        <!--    
-                        <a href="#" title="Selecione os dias de trabalho do colaborador." class="mine_float_right">
-                            <img src="../../css/images/professor.png"/>
-                        </a>
-                        -->
-                    </legend>
+                      <legend>
+                        Selecione os dias de trabalho:
+                      </legend>
 
-                        <div id="dias_semana">
-
+                      <div id="dias_semana">
                         <label for="ckb_dom">Domingo</label>
                         <input type="checkbox" name="ckb_dom" id="ckb_dom">
-    
+
                         <label for="ckb_seg">Segunda</label>
                         <input type="checkbox" name="ckb_seg" id="ckb_seg">
-    
+
                         <label for="ckb_ter">Terça</label>
                         <input type="checkbox" name="ckb_ter" id="ckb_ter">
-    
+
                         <label for="ckb_qua">Quarta</label>
                         <input type="checkbox" name="ckb_qua" id="ckb_qua">
-                    
+
                         <label for="ckb_qui">Quinta</label>
                         <input type="checkbox" name="ckb_qui" id="ckb_qui">
-                    
+
                         <label for="ckb_sex">Sexta</label>
                         <input type="checkbox" name="ckb_sex" id="ckb_sex">
-                    
+
                         <label for="ckb_sab">Sabado</label>
                         <input type="checkbox" name="ckb_sab" id="ckb_sab">
-                    </div>
+                      </div>
                     </fieldset>
 
-                    <!-- Horas de trabalho-->    
+                    <!-- Horas de trabalho-->
                     <fieldset>
                         <legend>
                             Selecione o horário de trabalho:
-                            <!--    
-                            <a href="#" title="Selecione os horários de trabalho do colaborador hora a hora. Este horário será utilizado pelo cliente quando agendar um serviço." class="mine_float_right">
-                            <img src="../../css/images/professor.png"/>
-                            </a>
-                            -->
                         </legend>
 
                         <div id="horas_trabalho">
@@ -173,21 +146,21 @@
                             <input type="checkbox" name="ckb_2300" id="ckb_2300">
                         </div>
                     </fieldset>
-  
-                    <input type="submit" value="Criar Agenda" id="submit" 
-                           class="ui-button ui-widget ui-corner-all">
+
+                    <input type="submit" value="Criar Agenda" id="submit" class="ui-button ui-widget ui-corner-all">
                 </form>
-            </section>    
-            
+            </section>
+
             <footer></footer>
-            
-            <section id="scripts"><!-- js files -->
+
+            <section id="scripts">
                 <script src="js/jquery.min.js"></script>
-                <script src="js/jquery.js"></script> 
-                <script src="js/bootstrap.min.js"></script>    
+                <script src="js/bootstrap.min.js"></script>
                 <script src="js/jquery-ui.min.js"></script>
+                <script src="js/ajax.js"></script>
                 <script src="js/jquery-ui-add.js"></script>
-            </section> 
-        </div>    
+                <script src="js/principal.js"></script>
+            </section>
+        </div>
     </body>
 </html>

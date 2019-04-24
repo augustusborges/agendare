@@ -1,6 +1,4 @@
 <?php
-
-
     require_once "config.php";
     require_once BASE_DIR."lib".DS."utils.php";
     require_once BASE_DIR."model".DS."pessoa.php";
@@ -18,9 +16,9 @@
             $erros[] = "Favor informar a senha de acesso";
         } elseif (empty($_POST['userPasswordRepeat'])){
             $erros[] = "Favor informar a confirmação da senha";
-        } 
-        
-        //Valida se dados estão respeitando padrão determinado    
+        }
+
+        //Valida se dados estão respeitando padrão determinado
         elseif ($_POST['userPassword'] !== $_POST['userPasswordRepeat']) {
             $erros[] = "A senha e sua confirmação precisam ser idênticas";
         } elseif (strlen($_POST['userPassword']) < 6) {
@@ -48,7 +46,6 @@
             && ($_POST['userPassword'] === $_POST['userPasswordRepeat'])
         ) {
 
-
             //cria o objeto pessoa
             $pessoa = new pessoa();
             $pessoa->nomePessoa = $_POST['userName'];
@@ -58,30 +55,34 @@
 
             //e insere os dados no banco
             $pessoa->inserePessoa($pessoa);
-            
+
         }
         else{
             echo "entrei, mas deu erro! ";
             echo $erros;
         }
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="utf-8"/>
+        <meta name="author" content="Focus4 Business Intelligence Ltda"/>
+        <meta name="description" content="Aplicativo de agendamento de processos online"/>
+        <meta name="keywords" content="sistemas, agenda, agendamento, online"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
         <title>d.a.a.b - Cadastro de Clientes</title>
 
         <links>
             <link rel="stylesheet" href="css/bootstrap.css"/>
             <link rel="stylesheet" href="css/jquery-ui.css"/>
-            <link rel="stylesheet" href="css/jquery-ui.theme.min.css"/>
             <link rel="stylesheet" href="css/mine.css"/>
             <link rel="stylesheet" href="css/principal.css"/>
         </links>
     </head>
     <body>
+      <div class="container-fluid body_color">
 
         <div class="row" id="menu">
             <?php include BASE_DIR.'view'.DS.'_menu.php';?>
@@ -91,13 +92,6 @@
             <div class="col-sm-12">
                 <header>
                     <div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">Cadastro de Clientes</div>
-                    <!--
-                        <a href="#" 
-                            title="Página onde se monta a agenda de profissionais. O que se montar aqui é o que ficará disponível para que os clientes façam seus agendamentos."
-                            class="mine_float_right">
-                            <img src="../../css/images/professor.png"/>
-                        </a>
-                    -->
                 </header>
             </div>
         </div>
@@ -106,46 +100,49 @@
 
             <!--utilizando padrão HTML5 de validação-->
             <label for="userName">Nome</label>
-            <input type="text" 
+            <input type="text"
                    id="userName"
                    name="userName"
                    title="Favor usar apenas letras e espaços. O nome deve ter entre 5 e 255 "
-                   pattern="[a-zA-Z0-9\s]{5,255}" 
+                   pattern="[a-zA-Z0-9\s]{5,255}"
                    required /><br/>
 
             <label for="userEmail">Email</label>
             <input type="email"
-                   id="userEmail" 
+                   id="userEmail"
                    name="userEmail"
                    autocomplete="on"
                    required /><br/>
 
             <label for="userPassword">Senha</label>
             <input type="password"
-                   id="userPassword" 
-                   name="userPassword"  
-                   pattern=".{6,}" 
-                   autocomplete="off" 
+                   id="userPassword"
+                   name="userPassword"
+                   pattern=".{6,}"
+                   autocomplete="off"
                    required /><br/>
 
             <label for="userPasswordRepeat">Confirma Senha</label>
             <input type="password"
-                   id="userPasswordRepeat" 
-                   name="userPasswordRepeat" 
+                   id="userPasswordRepeat"
+                   name="userPasswordRepeat"
                    pattern=".{6,}"
-                   autocomplete="off" 
+                   autocomplete="off"
                    required/><br/>
-            
+
             <input type="submit" value="Cadastrar" />
         </form>
 
-        <section id="scripts"><!-- js files -->
+        <section id="scripts">
             <script src="js/jquery.min.js"></script>
-            <script src="js/jquery.js"></script> 
-            <script src="js/bootstrap.min.js"></script>    
+            <script src="js/jquery.js"></script>
+            <script src="js/bootstrap.min.js"></script>
             <script src="js/jquery-ui.min.js"></script>
             <script src="js/jquery-ui-add.js"></script>
-        </section> 
+            <script src="js/ajax.js"></script>
+            <script src="js/principal.js"></script>
+        </section>
+      </div>
     </body>
 </html>
 

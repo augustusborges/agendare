@@ -3,7 +3,7 @@
 $(function () {
     $("#dt_ini").datepicker({
         showOn: 'button',
-        buttonImage: '../../css/images/calendar.png',
+        buttonImage: 'img/calendar.png',
         buttonImageOnly: true,
         dateFormat: 'dd/mm/yy',
         dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
@@ -17,7 +17,7 @@ $(function () {
 
     $("#dt_fim").datepicker({
          showOn: 'button',
-         buttonImage: '../../css/images/calendar.png',
+         buttonImage: 'img/calendar.png',
          buttonImageOnly: true,
          dateFormat: 'dd/mm/yy',
          dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
@@ -28,7 +28,7 @@ $(function () {
          nextText: 'Próximo',
          prevText: 'Anterior'
      });
-    
+
     $("#dt_agenda").datepicker({
         //showOn: 'button',
         //buttonImage: '../../css/images/calendar.png',
@@ -44,22 +44,22 @@ $(function () {
     });
 
     $("#selectable").selectable();
-    
+
     $("#dias_semana").controlgroup();
- 
+
     $("#horas_trabalho").controlgroup();
 
 	$("#horasDisponiveis").controlgroup();
-	   
+
     $("#radio").checkboxradio();
-    
+
     $(document).tooltip();
 
 });
 
-//Chamada AJAX 
+//Chamada AJAX
 function showHint(str) {
-    if (str.length == 0) { 
+    if (str.length == 0) {
         document.getElementById("txtHint").innerHTML = "";
         return;
     } else {
