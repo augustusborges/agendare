@@ -1,0 +1,123 @@
+#Cria o schema Agenda
+CREATE SCHEMA `agenda` ;
+
+#Cria a tabela pessoa
+CREATE TABLE `agenda`.`pessoa` (
+  `idpessoa` INT NOT NULL AUTO_INCREMENT,
+  `nomepessoa` VARCHAR(150) NULL,
+  `emailpessoa` VARCHAR(150) NOT NULL,
+  `senhapessoa` VARCHAR(255) NOT NULL,
+  `tipopessoa` INT NOT NULL,
+  `pessoacol` VARCHAR(45) NULL,
+  PRIMARY KEY (`idpessoa`),
+  UNIQUE INDEX `emailpessoa_UNIQUE` (`emailpessoa` ASC),
+  UNIQUE INDEX `tipopessoa_UNIQUE` (`tipopessoa` ASC));
+  
+#Cria a tabela de telefones associando-os à pessoa
+CREATE TABLE `agenda`.`telefone` (
+  `idtelefone` INT NOT NULL AUTO_INCREMENT,
+  `idpessoa` INT NOT NULL,
+  `telefone` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`idtelefone`),
+  INDEX `telefone_pessoa_idx` (`idpessoa` ASC),
+  CONSTRAINT `telefone_pessoa`
+    FOREIGN KEY (`idpessoa`)
+    REFERENCES `agenda`.`pessoa` (`idpessoa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+#Cria a tabela com dados das empresas
+CREATE TABLE `agenda`.`empresa` (
+  `idempresa` INT NOT NULL AUTO_INCREMENT,
+  `nomeempresa` VARCHAR(150) NOT NULL,
+  PRIMARY KEY (`idempresa`))
+  
+#Ajuste para atrela a forein key emrpesa na tabela pessoa
+ALTER TABLE `agenda`.`pessoa` 
+CHANGE COLUMN `pessoacol` `idempresa` INT NULL DEFAULT NULL ,
+ADD INDEX `pessoa_empresa_idx` (`idempresa` ASC);
+ALTER TABLE `agenda`.`pessoa` 
+ADD CONSTRAINT `pessoa_empresa`
+  FOREIGN KEY (`idempresa`)
+  REFERENCES `agenda`.`empresa` (`idempresa`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+#Cria a tabela procedimento
+CREATE TABLE `agenda`.`procedimento` (
+  `idprocedimento` INT NOT NULL AUTO_INCREMENT,
+  `nomeprocedimento` VARCHAR(150) NOT NULL,
+  `valorprocedimento` DECIMAL(10,2) NOT NULL,
+  `idempresa` INT NOT NULL,
+  PRIMARY KEY (`idprocedimento`),
+  INDEX `procedimento_empresa_idx` (`idempresa` ASC),
+  CONSTRAINT `procedimento_empresa`
+    FOREIGN KEY (`idempresa`)
+    REFERENCES `agenda`.`empresa` (`idempresa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION); 
+    
+#Cria a tabela de relacionamento pessoa x procedimento x empresa
+CREATE TABLE `agenda`.`listaservico` (
+  `idservico` INT NOT NULL,
+  `idpessoa` INT NOT NULL,
+  `idprocedimento` INT NOT NULL,
+  `idempresa` INT NOT NULL,
+  PRIMARY KEY (`idservico`),
+  INDEX `servico_pessoa_idx` (`idpessoa` ASC),
+  INDEX `servico_procedimento_idx` (`idprocedimento` ASC),
+  INDEX `servico_empresa_idx` (`idempresa` ASC),
+  CONSTRAINT `servico_pessoa`
+    FOREIGN KEY (`idpessoa`)
+    REFERENCES `agenda`.`pessoa` (`idpessoa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `servico_procedimento`
+    FOREIGN KEY (`idprocedimento`)
+    REFERENCES `agenda`.`procedimento` (`idprocedimento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `servico_empresa`
+    FOREIGN KEY (`idempresa`)
+    REFERENCES `agenda`.`empresa` (`idempresa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+#Cria tabela Agendamento
+CREATE TABLE `agenda`.`agendamento` (
+  `idagendamento` INT NOT NULL AUTO_INCREMENT,
+  `idcolaborador` INT NULL,
+  `idempresa` INT NULL,
+  `idprocedimento` INT NULL,
+  `idcliente` INT NULL,
+  `dia` DATE NULL,
+  `hora` VARCHAR(5) NULL,
+  `livre` BINARY(1) NULL,
+  `cancelado` BINARY(1) NOT NULL DEFAULT 0,
+  `datacancelamento` DATETIME NULL,
+  PRIMARY KEY (`idagendamento`),
+  INDEX `colaborador_agenda_idx` (`idcolaborador` ASC),
+  INDEX `empresa_agenda_idx` (`idempresa` ASC),
+  INDEX `procedimento_agenda_idx` (`idprocedimento` ASC),
+  INDEX `cliente_agenda_idx` (`idcliente` ASC),
+  INDEX `dia` (`dia` ASC),
+  CONSTRAINT `colaborador_agenda`
+    FOREIGN KEY (`idcolaborador`)
+    REFERENCES `agenda`.`pessoa` (`idpessoa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `empresa_agenda`
+    FOREIGN KEY (`idempresa`)
+    REFERENCES `agenda`.`empresa` (`idempresa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `procedimento_agenda`
+    FOREIGN KEY (`idprocedimento`)
+    REFERENCES `agenda`.`procedimento` (`idprocedimento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `cliente_agenda`
+    FOREIGN KEY (`idcliente`)
+    REFERENCES `agenda`.`pessoa` (`idpessoa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

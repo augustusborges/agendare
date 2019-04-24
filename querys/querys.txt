@@ -1,0 +1,44 @@
+select ag.idagendamento, ag.idcliente, ag.idprocedimento, pr.valorprocedimento
+
+from agendamento ag
+
+inner join procedimento pr on pr.idprocedimento = ag.idprocedimento
+
+where livre = 0;
+
+
+
+#busca total de valor agendado
+select sum(pr.valorprocedimento), count(ag.idprocedimento)
+from agendamento ag
+inner join procedimento pr on pr.idprocedimento = ag.idprocedimento
+where livre = 0;
+
+#busca total de valor agendado por cliente
+select ag.idcliente, sum(pr.valorprocedimento), count(ag.idprocedimento)
+from agendamento ag
+inner join procedimento pr on pr.idprocedimento = ag.idprocedimento
+where livre = 0
+group by ag.idcliente;
+
+#buscar total de valor agendado por procedimentos
+select ag.idprocedimento, sum(pr.valorprocedimento)
+from agendamento ag
+inner join procedimento pr on pr.idprocedimento = ag.idprocedimento
+where livre = 0
+group by ag.idprocedimento;
+
+#buscar total de valor agendado por procedimentos para cada cliente
+select ag.idagendamento, ag.idcliente, ag.idprocedimento, sum(pr.valorprocedimento)
+from agendamento ag
+inner join procedimento pr on pr.idprocedimento = ag.idprocedimento
+where livre = 0
+group by ag.idcliente, ag.idprocedimento;
+
+update agendamento set livre=0, idcliente=2, idprocedimento=1 where idagendamento=13;
+
+select ag.idagendamento, ag.idcliente, ag.idprocedimento, sum(pr.valorprocedimento), count(ag.idprocedimento)
+from agendamento ag
+inner join procedimento pr on pr.idprocedimento = ag.idprocedimento
+where livre = 0
+group by ag.idcliente, ag.idprocedimento;

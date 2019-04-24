@@ -1,0 +1,417 @@
+/*CORPO*/
+/* Gerando espaço para a apresentação do menu fixo no topo da página*/
+body{
+    padding-top:80px;
+}
+/* Define a cor de fundo da página para um elemento container */
+.body_color{
+    background-color: #F4F4F4;/*#F4F4F4*/
+    height: 1000px;
+}
+
+/* -------------------------------------------------------------------------------------------- */
+/*NAVBAR*/
+
+/*Padrão de itens de formulario da barra de navegação*/
+.form-control-navbar{
+	width: 150px;
+	height:35px;
+	border: none;
+	border-bottom: 1px solid #5F5959;
+	font-size:14px;
+	color: #5F5959;
+    margin-bottom: 5px;
+}
+
+/*Padrão de botão de formulario da barra de navegação*/
+.form-button-navbar{
+	height:30px;
+	border: none;
+    padding-top: 2px;
+    padding-bottom: 10px;
+	font-size:14px;
+	color: #5F5959;
+    margin-bottom: 5px;
+	/*border-bottom: 1px solid #5F5959;*/
+}
+
+/*Altera cor do icone do usuário definindo se está logado...*/
+.icone-color-navbar-ok{
+  color:limegreen;
+}
+
+/* ou deslogado*/
+.icone-color-navbar-nok{
+    color:red;
+}
+
+#loginIcone{
+    font-size: 25px;
+    display: inline;
+}
+
+/* -------------------------------------------------------------------------------------------- */
+/*CABECALHO*/
+
+/* Gera linha de demarcação de cabeçalho de página */
+.cabecalho-borda{
+	width: 100%;
+	border-bottom: .7px solid #5F5959;
+	margin-bottom: 30px;
+}
+
+/* Define o formato padrão de cabeçalho de página */
+.cabecalho-texto{
+	font-family: verdana;
+	font-size: 18px;
+	text-align: bottom;
+
+}
+
+/* -------------------------------------------------------------------------------------------- */
+/*FORMULARIO*/
+/* Define padrão para campos de formulario*/
+
+/*Cria a borda que envolve os campos de um formulário*/
+.form-borda-padrao{
+
+    margin-left: 30%;
+    width: 40%;
+    
+    /*margin: 10px 10px 10px 10px;*/
+    padding: 15px 5px 5px 5px;
+    border: .7px solid #5F5959;
+    /*width: 500px;*/
+    height: 700px;
+    box-shadow: 3px 2px 2px #5F5959;
+    border-radius: 8px;
+}
+
+/* Define padrão para labels de grupos de itens em formularios*/
+.form-label{
+	/*border: 1px solid #5F5959;*/
+	width:100px;
+	margin-right: 10px;	
+	font-size:14px;
+	color:#5F5959;
+	/*text-shadow: 2px 2px 5px #5F5959;*/
+	text-align:right;
+
+}
+
+/*Define a aparencia dos componentes do formulario Texto e Select*/
+.form-component{
+	width: 250px;
+	height:30px;
+	border: none;
+	border-bottom: 1px solid #5F5959;
+	font-size:14px;
+	color: #5F5959;
+	margin-bottom:30px;
+
+}
+
+#login{
+    padding-top: 5px;
+	border: none;
+	border-bottom: 1px solid #5F5959;
+
+}
+
+/* Borda utilizada como grupo para radio e checkbox */
+.divForm{
+	/*border: 1px solid #5F5959;*/
+	margin-bottom:5px;
+	
+}
+
+.remember{
+    float: right;/**/
+}
+
+.remember-label{
+    /*float: right;*/
+    font-weight: lighter;
+    font-size: 13px;
+    color:#5F5959;
+    padding-bottom: 1px;
+}
+
+/* ---------------------------------------------------------------------------------------- */
+/* RESPONSIVE */
+
+@media (max-width: 680px) {
+
+    .form-borda-padrao{
+    margin: 1px 1px 1px 1px;
+    width: 100%;
+}
+
+    .form-label{
+	margin-right: 0px;
+	font-size:18px;
+	text-shadow: 2px 2px 5px #5F5959;
+    text-align: left;
+}
+
+    .form-component{
+	   width: 300px;
+}
+
+    .form-control-navbar{
+        width: 150px;
+        display:inline;
+    }
+
+    .form-button-navbar{
+        display:inline;
+    }
+   
+}
+
+/* -------------------------------------------------------------------------------------- */
+
+/* Define padrão apra labels de formularios*/
+.labelChique{
+	margin-right: 10px;	
+	font-size:14px;
+	color:#5F5959;
+/*	text-shadow: 2px 2px 5px #5F5959;*/
+
+}
+
+
+/* Marcação de bordas para simples conferencia*/
+.mostraborda{
+	border: 1px solid red;
+	/*height: 200px;*/
+}
+
+
+/*
+
+
+.mydiv{
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+	margin-bottom: 10px;
+    background-color: aquamarine;
+    border: 1px solid red;
+    color: darkmagenta;
+    font-size: 30px;
+
+	
+} 
+
+.mydivred{
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    border: 1px solid green;
+    color: white;
+    font-size: 15px;
+
+	
+} 
+
+.relativo{
+	position: relative;
+	left: -10px;
+	top: 100px;
+}
+
+.absoluto{
+	position: absolute;
+	top: 70px;
+	left:35px;
+	
+}
+
+.myfloatright{
+	float: right;
+}
+
+
+.body_color{
+    background-color: #F4F4F4;
+}
+
+.linha{
+    color: #666;
+    background-color: #666;
+    opacity: .2;
+    height: 1px;
+    }
+
+.marginTop40{
+    margin-top: 40px;
+}
+.marginTop10{
+    margin-top: 10px;
+}
+
+.marginTop20{
+    margin-top: 20px;
+}
+
+.marginTop150{
+    margin-top: 150px;
+}
+
+.paddingleft20{
+    padding-left: 20px;
+}
+
+.margin70 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 750px;
+    margin-left: 750px;
+} 
+
+.margin500 {
+    margin-top: 500px;
+    margin-bottom: 100px;
+    margin-right: 750px;
+    margin-left: 750px;
+} 
+
+.bordaPadrao {
+    border: 1px solid blue;
+}
+
+
+p {
+    border: 1px solid red;
+    width: 355px;
+    margin-left: 1px;
+}
+
+.minhadiv {
+    height: 100px;
+    width: 100px;
+    background-color: powderblue;
+} 
+
+#minhadiv {
+    height: 100px;
+    width: 100px;
+    background-color: powderblue;
+    border: 1px solid green;
+    
+} 
+
+.minhadiv1 {
+    height: 50px;
+    width: 50px;
+    background-color: powderblue;
+    position: relative;
+    left: 50px
+} 
+
+
+.h4_meu{
+    font: verdana;
+    color:darkblue;
+}
+
+.error{
+    color: red;
+}
+
+.minuscula{
+    text-transform:lowercase;
+    color:white;
+}
+
+.frmLogin{
+    top=0;
+    float: right;
+    padding-top: 30px;
+    padding-right: 25px;
+    
+}
+
+.frmLogin label{
+
+	color: rgba(255, 255, 255, 0.75);
+	font-size: 10px;
+	font-weight: 400;
+	margin-left: 40px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+
+}
+
+.frmLogin input[type="text"] {
+    background-color:#f2f2f2;
+    border:1px solid #000;
+    padding-left:5px;
+    padding-right: 5px;
+    height: 20px;
+    width: 100px;
+    font-size: 12px;
+}
+.frmLogin input[type="password"] {
+    background-color:#f2f2f2;
+    border:1px solid #000;
+    padding-left:5px;
+    padding-right: 5px;
+    height: 20px;
+    width: 100px;
+    font-size: 12px;
+}
+
+
+.frmLogin input[type="submit"] {
+    background-color:#036;
+    border:1px solid #000;
+    color:#fff;
+    font-size: 12px;
+}
+
+#feedback { 
+    font-size: 1.4em; 
+}
+
+#selectable .ui-selecting { 
+    background: lightblue; 
+}
+
+#selectable .ui-selected { 
+    background: #007FFF; color: white; 
+}
+#selectable { 
+    list-style-type: none; margin: 0; padding: 0; width: 60%; 
+}
+
+#selectable li { 
+    font-size: 1.2em;
+}
+
+#submit{
+float:right;
+}
+
+.mine_float_right{
+float:right;
+    
+}
+
+fieldset {
+	padding-top:10px;
+	border:1px solid #666;
+	border-radius:8px;
+	box-shadow:0 0 10px #666;
+}
+legend {
+    font-size: 15px;
+	float:left;
+	margin-top:-10px;
+}
+legend + * {
+	clear:both;
+}
+*/
