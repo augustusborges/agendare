@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  error_reporting(E_ALL|E_STRICT);
+  require_once 'config.php';
+  require_once BASE_DIR.'lib'.DS.'utils.php';
+  require_once BASE_DIR.'model'.DS.'pessoa.php';
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,9 +31,6 @@
 
       <div class="row" id="php">
         <?php
-          require 'config.php';
-          require BASE_DIR.'lib'.DS.'utils.php';
-          require BASE_DIR.'model'.DS.'pessoa.php';
           require BASE_DIR.'model'.DS.'empresa.php';
 
           $pessoa = new pessoa();
@@ -178,32 +184,8 @@
 
 
 <!--
-Refazendo menu de loginIcone
-<div class="row" id="menu">
-  <div class="col-sm-12">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">AGENDARE</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li><a href="agendacliente.php">Minha Agenda</a></li>
-            <li><a href="criaragenda.php">Montar Agenda Colaboradores</a></li>
-            <li><a href="graficos.php">Graficos</a></li>
-            <li><a href="excluicookie.php">Logout</a></li>
-          </ul>
-          <form class="navbar-form navbar-right"
-          method="post"
-          action="index.php">
-
-
           <?php
+
             //Validação de usuário logado no sistema
             //com mensagem de boas vindas.
             // if($pessoa->usuarioLogado()){
@@ -236,27 +218,7 @@ Refazendo menu de loginIcone
             //}
           ?>
 
-          <div class="form-group">
 
-            <input type="text" id="userEmail" name="userEmail" class="form-control form-control-navbar" placeholder="login">
-
-            <input type="password" id="userPassword" name="userPassword" class="form-control form-control-navbar" placeholder="senha">
-
-            <button type="submit" class="btn btn-default">
-              <span class="glyphicon glyphicon-log-in"></span>
-            </button>
-
-            <br/>
-
-            <div id="rememberme" class="remember">
-              <input type="checkbox" name="rememberme" class="remember" value="1">
-
-              <label for="rememberme" class="remember-label">
-                Manter-me Logado:
-              </label>
-            </div>
-          </div>
-        </form>
 
       </div>
     </div>

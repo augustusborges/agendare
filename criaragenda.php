@@ -1,3 +1,19 @@
+<?php
+  session_start();
+  error_reporting(E_ALL|E_STRICT);
+  require_once 'config.php';
+  require_once BASE_DIR.'lib'.DS.'utils.php';
+  require_once BASE_DIR.'model'.DS.'pessoa.php';
+  $pessoa = new pessoa();
+
+  if(($pessoa->usuarioLogado())['sucesso'] == false){
+    echo "<script type='text/javascript'>window.location='index.php'; </script>";
+  }
+  else {
+    consoleLog("que merda");
+  }
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,12 +37,8 @@
 
             <div class="row" id="php">
                 <?php
-                    require_once 'config.php';
-                    require_once BASE_DIR.'lib'.DS.'utils.php';
-                    require_once BASE_DIR.'model'.DS.'colaborador.php';
-                    require_once BASE_DIR.'model'.DS.'pessoa.php';
-
-                    $colaborador = new colaborador();
+                  require_once BASE_DIR.'model'.DS.'colaborador.php';
+                  $colaborador = new colaborador();
                 ?>
             </div>
 

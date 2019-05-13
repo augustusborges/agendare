@@ -72,8 +72,6 @@
               if(!file_exists($caminho)) {
                 if(!mkdir($caminho)){
                   die('Não foi possível criar pasta');
-                  consoleLog("teste1");
-
                 }
               }
 
@@ -132,7 +130,7 @@
           //       }
           //     }
           //   }
-          //   header('Location: index.php');
+          //
           // }
 
 ?>           -->

@@ -1,11 +1,11 @@
 <?php
-		include 'config.php';
-		include BASE_DIR."lib".DS."Login.php";
-		
-		$login = new Login();
-		$login->doLogout(); 
-		setcookie('userEmail');
-		setcookie('userPassword');
-		header('Location: index.php');		
+		require '../config.php';
+		require BASE_DIR."lib".DS."utils.php";
+		require BASE_DIR."model".DS."pessoa.php";
+
+		$pessoa = new pessoa();
+
+		$pessoa->fazerLogout();
+		header('Location: index.php');
 
 ?>

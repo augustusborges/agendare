@@ -32,7 +32,7 @@
                 <li><a href="cadastro.php">Cadastrar Usuário</a></li>
                 <li><a href="graficos.php">Gráficos</a></li>
                 <li><a href="login.php">Login</a></li>
-                <li><a href="excluicookie.php">Logout</a></li>
+                <li><a href="lib/excluicookie.php">Logout</a></li>
               </ul>
             </li>
           </ul>
