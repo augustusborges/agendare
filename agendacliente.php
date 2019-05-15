@@ -1,3 +1,20 @@
+<?php
+  session_start();
+  error_reporting(E_ALL|E_STRICT);
+  require_once 'config.php';
+  require_once BASE_DIR.'lib'.DS.'utils.php';
+  require_once BASE_DIR.'model'.DS.'pessoa.php';
+
+  //Validação de usuário logado
+  $pessoa = new pessoa();
+  if(($pessoa->usuarioLogado())['sucesso'] == false){
+    echo "<script type='text/javascript'>window.location='index.php'; </script>";
+  }
+  else {
+    consoleLog($_SESSION['userName']);
+  }
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,10 +40,7 @@
 
       <div class="row" id="php">
         <?php
-          include 'config.php';
-          include BASE_DIR.'lib'. DS. 'utils.php';
           include BASE_DIR.'model'. DS. 'agenda.php';
-
           $agenda = new agenda();
         ?>
       </div>
@@ -64,26 +78,26 @@
 			</div>
 
       <div class="row" id="calendario">
-				<div class="col-sm-12">
-          <div id="montaCalendario">
+        <div class="col-sm-12">
+            <div id="montaCalendario">
             <?php
               $caminho = BASE_DIR.'diretorio'.DS.$_SESSION['sessionId'];
 
               if(!file_exists($caminho)) {
                 if(!mkdir($caminho)){
-                  die('Não foi possível criar pasta');
+                  die();
                 }
               }
 
               $eventos = $agenda->buscaAgendamentosCliente($_SESSION['userId']);
-              criaEventosCliente($eventos);
+              criaEventosCliente($eventos); // /lib/utils
             ?>
           </div>
 
-          <div id='script-warning'>
-            <code>php/get-events.php</code> must be running.
+            <div id='script-warning'>
+            <code>lib/criaragenda.php</code>precisa estar rodando. Favor avisar ao administrador!
           </div>
-	        <div id="clndAgendaCliente"></div>
+	          <div id="clndAgendaCliente"></div>
 				</div>
 			</div>
 
@@ -107,30 +121,3 @@
     </div>
   </body>
 </html>
-
-<!-- <?php
-
-//require BASE_DIR.'lib'. DS. 'Login.php';
-//
-
-
-          // $login = new Login();
-          //
-          // //Usuário só pode agendar se estiver logado
-          // if(!$login->isUserLoggedIn()) {
-          //   if (isset($login)) {
-          //     if ($login->errors) {
-          //       foreach ($login->errors as $error) {
-          //         echo $error;
-          //       }
-          //     }
-          //     if ($login->messages) {
-          //       foreach ($login->messages as $message) {
-          //         echo $message;
-          //       }
-          //     }
-          //   }
-          //
-          // }
-
-?>           -->

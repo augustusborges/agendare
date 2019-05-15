@@ -1,3 +1,20 @@
+<?php
+  session_start();
+  error_reporting(E_ALL|E_STRICT);
+  require_once 'config.php';
+  require_once BASE_DIR.'lib'.DS.'utils.php';
+  require_once BASE_DIR.'model'.DS.'pessoa.php';
+
+  //Validação de usuário logado
+  $pessoa = new pessoa();
+  if(($pessoa->usuarioLogado())['sucesso'] == false){
+    echo "<script type='text/javascript'>window.location='index.php'; </script>";
+  }
+  else {
+    consoleLog($_SESSION['userName']);
+  }
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,13 +38,9 @@
 
       <div class="row" id="php">
         <?php
-        require_once 'config.php';
-        require_once BASE_DIR.'lib'.DS.'utils.php';
-        require_once BASE_DIR.'model'.DS.'colaborador.php';
-        require_once BASE_DIR.'model'.DS.'pessoa.php';
-        require_once BASE_DIR.'dao'.DS.'agendaDao.php';
-
-        $colaborador = new colaborador();
+          require_once BASE_DIR.'model'.DS.'colaborador.php';
+          require_once BASE_DIR.'model'.DS.'agenda.php';
+          $colaborador = new colaborador();
 
         ?>
       </div>
@@ -37,14 +50,17 @@
         <div></div>
       </div>
 
-      <div class="row" id="linha_cabecalho">
+      <div class="row" id="cabecalho">
         <div class="col-sm-12">
           <header>
-            <div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">Apresenta Agenda de Colaboradores</div>
+            <div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">
+              Apresenta Agenda de Colaboradores
+            </div>
             <!-- <a href="#" title="texto para exibir." class="mine_float_right"> <img src="../../css/images/professor.png"/> </a>-->
           </header>
         </div>
-
+      </div>
+        
       <section id="criaagenda">
         <?php
           //Esta seção monta a agenda do colaborador inserida na página criaagenda.php
@@ -118,9 +134,9 @@
             $colaboradorSelecionado = (isset($_POST["teste"])? $_POST["teste"]:0);
 
             //Ou pega o ultimo colaborador da lista que vem da página montaagenda
-            if(is_array($colaboradores)){
-              $outroColaborador = end($colaboradores);
-            }
+            //if(is_array($colaboradores)){
+            //  $outroColaborador = end($colaboradores);
+            //}
 
             //Monta a seleção de colaboradores na tela
             echo "<select id='teste' name='teste'>";
@@ -163,7 +179,7 @@
         <div id='script-warning'>
           <code>lib/agendalivre.php</code> precisa estar rodando.
         </div>
-        <div id="clndVisaoAgendaAberta"></div>
+        <div id="clndDisponibilidadeColaboradores"></div>
       </section>
 
       <section id="scripts">

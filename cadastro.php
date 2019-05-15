@@ -1,7 +1,20 @@
 <?php
+    session_start();
+    error_reporting(E_ALL|E_STRICT);
+
     require_once "config.php";
     require_once BASE_DIR."lib".DS."utils.php";
     require_once BASE_DIR."model".DS."pessoa.php";
+
+    //Validação de usuário logado
+    $pessoa = new pessoa();
+    if(($pessoa->usuarioLogado())['sucesso'] == false){
+        echo "<script type='text/javascript'>window.location='index.php'; </script>";
+    }
+    else {
+        consoleLog($_SESSION['userName']);
+    }
+
 
     //Validações e inserção de novo colaborador
     $erros = array();
@@ -82,13 +95,15 @@
         </links>
     </head>
     <body>
+
       <div class="container-fluid body_color">
 
         <div class="row" id="menu">
+
             <?php include BASE_DIR.'view'.DS.'_menu.php';?>
         </div>
 
-        <div class="row" id="linha_cabecalho">
+        <div class="row" id="cabecalho">
             <div class="col-sm-12">
                 <header>
                     <div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">Cadastro de Clientes</div>
@@ -146,21 +161,3 @@
     </body>
 </html>
 
-
-<?php
-// VALIDAR SE PODE SER APAGADO
-/*session_start();
-echo session_id();
-$lixo = session_id();
-$caminho = DIRETORIO_PADRAO.$lixo;
-if(!file_exists($caminho)) {
-    if(!mkdir($caminho)){
-        die('Failed to create folders...');
-    }
-}
-
-$eventos = buscaAgendamentosCliente(2);
-criaEventosCliente($eventos);
-    */
-
-?>

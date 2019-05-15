@@ -1,3 +1,20 @@
+<?php
+    session_start();
+    error_reporting(E_ALL|E_STRICT);
+
+    require_once "config.php";
+    require_once BASE_DIR."lib".DS."utils.php";
+    require_once BASE_DIR."model".DS."pessoa.php";
+
+    //Validação de usuário logado
+    $pessoa = new pessoa();
+    if(($pessoa->usuarioLogado())['sucesso'] == false){
+        echo "<script type='text/javascript'>window.location='index.php'; </script>";
+    }
+    else {
+        consoleLog($_SESSION['userName']);
+    }
+?>    
 <!DOCTYPE html>
 <html>
   <head>

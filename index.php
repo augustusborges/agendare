@@ -6,7 +6,6 @@
   require_once BASE_DIR.'model'.DS.'pessoa.php';
 
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -36,35 +35,35 @@
           $pessoa = new pessoa();
           $empresa = new empresa();
 
-        //Se usuário não logado
-        if(!$pessoa->usuarioLogado()) {
+          //Se usuário não logado
+          if(!$pessoa->usuarioLogado()) {
 
-          //Verifica se há cookie armazenado
-          if (isset($_COOKIE['userEmail']) && isset($_COOKIE['userPassword'])){
+            //Verifica se há cookie armazenado
+            if (isset($_COOKIE['userEmail']) && isset($_COOKIE['userPassword'])){
 
-            //caso haja, tenta-se o login do usuário
-            $pessoa->emailPessoa = (isset($_COOKIE['userEmail'])?$_COOKIE['userEmail']:null);
-            $pessoa->senhaPessoa = (isset($_COOKIE['userPassword'])?$_COOKIE['userPassword']:null);
-            $pessoa->fazerLogin(false);
-
-          }
-          elseif(isset($_POST['userEmail']) && isset($_POST['userPassword'])){
-
-            $pessoa->emailPessoa = (isset($_POST['userEmail'])?$_POST['userEmail']:null);
-            $pessoa->senhaPessoa = (isset($_POST['userPassword'])?$_POST['userPassword']:null);
-
-            if(isset($_POST['rememberme'])){
-              $pessoa->fazerLogin(true);
-            }
-            else{
+              //caso haja, tenta-se o login do usuário
+              $pessoa->emailPessoa = (isset($_COOKIE['userEmail'])?$_COOKIE['userEmail']:null);
+              $pessoa->senhaPessoa = (isset($_COOKIE['userPassword'])?$_COOKIE['userPassword']:null);
               $pessoa->fazerLogin(false);
+
             }
-            //TODO: Inserir mensagens de login
+            elseif(isset($_POST['userEmail']) && isset($_POST['userPassword'])){
+
+              $pessoa->emailPessoa = (isset($_POST['userEmail'])?$_POST['userEmail']:null);
+              $pessoa->senhaPessoa = (isset($_POST['userPassword'])?$_POST['userPassword']:null);
+
+              if(isset($_POST['rememberme'])){
+               $pessoa->fazerLogin(true);
+              }
+              else{
+               $pessoa->fazerLogin(false);
+              }
+              //TODO: Inserir mensagens de login
+            }
           }
-        }
-        else{
-          //TODO: Inserir Mensagem de Logado
-        }
+          else{
+            //TODO: Inserir Mensagem de Logado
+          }
         ?>
       </div>
 
@@ -75,9 +74,10 @@
 
       <div class="row" id="cabecalho">
         <div class="col-sm-12">
-
           <header>
-            <div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">Agende Seu Procedimento</div>
+            <div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">
+              Agende Seu Procedimento
+            </div>
           </header>
         </div>
       </div>
@@ -163,6 +163,7 @@
 
       <div class="row" id="rodape">
       </div>
+    
     </div>
 
     <section id="scripts">
@@ -176,7 +177,6 @@
       <script src='js/fullcalendar.min.js'></script>
       <script src='js/locale/pt-br.js'></script>
       <script src='js/calendar-ui-add.js'></script>
-
     </section>
 
   </body>

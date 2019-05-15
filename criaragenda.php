@@ -1,16 +1,19 @@
 <?php
   session_start();
   error_reporting(E_ALL|E_STRICT);
+
   require_once 'config.php';
   require_once BASE_DIR.'lib'.DS.'utils.php';
   require_once BASE_DIR.'model'.DS.'pessoa.php';
+
+  //Valida usuário logado
   $pessoa = new pessoa();
 
   if(($pessoa->usuarioLogado())['sucesso'] == false){
     echo "<script type='text/javascript'>window.location='index.php'; </script>";
   }
   else {
-    consoleLog("que merda");
+    consoleLog($_SESSION['userName']);
   }
 
 ?>
@@ -47,13 +50,16 @@
                 <div></div>
             </div>
 
-			      <div class="row" id="linha_cabecalho">
-				      <div class="col-sm-12">
-                <header>
-                  <div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">Monta Agenda de Colaborador</div>
-                  <!-- <a href="#" title="texto para exibir." class="mine_float_right"> <img src="../../css/images/professor.png"/> </a>-->
-                </header>
-				      </div>
+			<div class="row" id="cabecalho">
+				<div class="col-sm-12">
+                    <header>
+                        <div id="cabecalho" name="cabecalho" class="cabecalho-borda cabecalho-texto">
+                            Monta Agenda de Colaborador
+                        </div>
+                        <!-- <a href="#" title="texto para exibir." class="mine_float_right"> <img src="../../css/images/professor.png"/> </a>-->
+                    </header>
+				</div>
+            </div>    
 
             <section id="formulario">
                 <form action="disponibilidadecolaboradores.php" method="post">

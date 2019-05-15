@@ -1,4 +1,5 @@
 <?php
+/*
     require 'config.php';
     require BASE_DIR."lib".DS."Login.php";
     require BASE_DIR."lib".DS.'utils.php';
@@ -254,3 +255,4 @@
                 <script src="js/principal.js"></script></section>
     </body>
 </html>
+*/

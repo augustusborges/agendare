@@ -1,5 +1,5 @@
 //Monta o calendario de disponibilidade dos colaboradores mostrando os dias que os mesmos estão disponiveis
-var $calendar =  $('#clndVisaoAgendaAberta').fullCalendar({
+var $calendarioColaborador =  $('#clndDisponibilidadeColaboradores').fullCalendar({
                 locale: 'pt-br',
                 editable: true,
                 navLinks: true, // can click day/week names to navigate views
@@ -16,25 +16,25 @@ var $calendar =  $('#clndVisaoAgendaAberta').fullCalendar({
                 },
 
                 events: {
-                    url: 'lib/agendalivre.php',
+                    url: 'lib/agendalivre.php', //arquivo que lerá os eventos do arquivo.json os inserindo no calendar
                     error: function() {
                         $('#script-warning').show();
                     }
                 },
 
                 dayRender: function (date, cell) {
-                    //var today = new Date('2018-02-25T00:00:00');
-                    var dia = $.fullCalendar.moment('2018-02-25');
-                    if (date === dia) {
+                    var today = new Date();
+                    //var dia = $.fullCalendar.moment('2019-05-15');
+                    if (date === today) {
                         cell.css("background-color", "red");
                     }
                 }
-            });
+                              });
 
-//Descrever o que faz
-var $calendarAgendaCliente =  $('#clndAgendaCliente').fullCalendar({
+//Monta o calendário com os agendamentos do cliente logado
+var $calendarioCliente =  $('#clndAgendaCliente').fullCalendar({
                 locale: 'pt-br',
-				defaultView: 'agendaDay', //determina a iniciação do calendario month=mes agendaWeek=semana agendaDay=dia
+				defaultView: 'agendaWeek', //determina a iniciação do calendario month=mes agendaWeek=semana agendaDay=dia
                 editable: true,
                 navLinks: false, // can click day/week names to navigate views
                 eventLimit: true, // allow "more" link when too many events
@@ -43,7 +43,7 @@ var $calendarAgendaCliente =  $('#clndAgendaCliente').fullCalendar({
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month,agendaWeek,agendaDay' //month,agendaWeek,agendaDay,listWeek
+                    right: 'agendaDay' //month,agendaWeek,agendaDay,listWeek
                 },
 
                 loading: function(bool) {
@@ -58,10 +58,9 @@ var $calendarAgendaCliente =  $('#clndAgendaCliente').fullCalendar({
                 },
 
                 dayRender: function (date, cell) {
-                    //var today = new Date('2018-02-25T00:00:00');
-                    var dia = $.fullCalendar.moment('2018-03-09');
+                    var dia = $.fullCalendar.moment('2019-05-15');
                     if (date === dia) {
-                        cell.css("background-color", "red");
+                        cell.css("background-color", "purple");
                     }
                 }
-            });
+                          });
